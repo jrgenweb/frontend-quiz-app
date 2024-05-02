@@ -1,0 +1,109 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --clr-primary: #a729f5;
+  --clr-primary-lighten: hsl(277, 91%, 80%);
+
+  --clr-success: #26d782;
+  --clr-danger: #ee5454;
+
+  --clr-neutral-800: #313e51;
+  --clr-neutral-600: #3b4d66;
+  --clr-neutral-400: #626c7f;
+  --clr-neutral-200: #abc1e1;
+  --clr-neutral-100: #f4f6fa;
+  --clr-white: #ffffff;
+
+  /* typography */
+
+  --fw-700: 600;
+  --fw-400: normal;
+
+  --fs-display: 144px;
+
+  --fs-heading-l: 64px;
+
+  --fs-heading-m: 36px;
+  --fs-heading-s: 28px;
+  --fs-body-m: 24px;
+  --fs-body-s: 20px;
+
+  --lh-body-s: 150%;
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-bg-primary: var(--clr-neutral-100);
+  --color-text: var(--clr-neutral-800);
+
+  --color-card-bg: var(--clr-white);
+
+  --color-button-text: var(--clr-white);
+
+  --section-gap: 160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: var(--clr-neutral-800);
+    --color-text: var(--clr-white);
+
+    --color-card-bg: var(--clr-neutral-600);
+  }
+
+  .wrapper {
+    background: url("images/pattern-background-desktop-dark.svg");
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .wrapper {
+    background: url("images/pattern-background-desktop-light.svg");
+  }
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("fonts/Rubik-VariableFont_wght.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("fonts/Rubik-Italic-VariableFont_wght.ttf");
+  font-style: italic;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-bg-primary);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.5;
+  font-family:
+    "Rubik",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,71 @@
+@import "./base.css";
+
+body {
+  color: var(--color-text);
+  display: grid;
+  place-content: center;
+}
+
+body::after {
+}
+
+.wrapper {
+  max-width: 1440px;
+  width: 100vw;
+  margin: 0 auto;
+
+  background-repeat: no-repeat;
+  min-height: 80vh; /*only first time*/
+  padding: 97px 140px;
+}
+
+@media (max-width: 800px) {
+  body {
+    display: unset;
+  }
+  .wrapper {
+    max-width: 768px;
+    padding: 54px 64px;
+    width: 100vw;
+    background: url("../assets/images/pattern-background-tablet-light.svg");
+    background-repeat: no-repeat;
+  }
+  .flex {
+    flex-direction: column;
+  }
+  .flex > * {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    padding: 1.5rem;
+    width: 100vw;
+    background: url("../assets/images/pattern-background-mobile-light.svg");
+    background-repeat: no-repeat;
+  }
+  .flex {
+    flex-direction: column;
+  }
+  .flex > * {
+    width: 100% !important;
+  }
+}
+
+h1 {
+  line-height: 1;
+  font-size: var(--fs-heading-l);
+  & span {
+    display: block;
+    font-weight: bold;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.flex > * {
+  width: 50%;
+}
