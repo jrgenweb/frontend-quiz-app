@@ -1,1 +1,0 @@
-import{_ as e,a as o,c as a,b as n,t as s}from"./index-9nG2A0TN.js";const c={__name:"ButtonComponent",props:{title:String},setup(t){return(r,_)=>(o(),a("div",null,[n("button",null,s(t.title),1)]))}},p=e(c,[["__scopeId","data-v-522dead4"]]);export{p as B};
