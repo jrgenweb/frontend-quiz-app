@@ -30,7 +30,7 @@ function click() {
     <div class="cards">
 
         <div class="card" :class="[state.correct, state.fail, { active: state.active }]" @click="click">
-            <span class=" icon">{{ letters[index] }}</span>
+            <span class="icon">{{ letters[index] }}</span>
             <span>{{ text }}</span>
         </div>
 
@@ -40,21 +40,26 @@ function click() {
 <style scoped>
 a {
     text-decoration: none;
-    color: var(--color-text);
+    /* color: var(--color-text-card); */
 }
 
 .card {
+
+    --_padding: 12px;
+    --_border-radius: 12px;
+
     width: 100%;
     background-color: var(--color-card-bg);
-    border-radius: 1.5rem;
+    border-radius: var(--_border-radius);
 
 
-    padding: 1.25rem;
+    padding: var(--_padding);
+    padding-right: calc(var(--_padding) + 40px);
     font-size: var(--fs-heading-s);
 
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 
     outline: 2px solid transparent;
     transition: 0.3s;
@@ -66,6 +71,12 @@ a {
         font-weight: var(--fw-700);
     }
 
+    & .icon {
+        width: 40px;
+        height: 40px;
+        color: var(--color-text-card);
+    }
+
     &:hover {
         & .icon {
             background-color: var(--clr-primary-lighten);
@@ -74,6 +85,23 @@ a {
     }
 
 }
+
+
+@media (min-width:37.5rem) {
+    .card {
+        --_padding: 1.25rem;
+        --_border-radius: 1.5rem;
+        gap: 2rem;
+
+        & .icon {
+            width: 56px;
+            height: 56px;
+        }
+    }
+
+    .icon {}
+}
+
 
 .card.active {
     outline: 2px solid var(--clr-primary);
@@ -97,33 +125,51 @@ a {
     }
 }
 
-.active.fail::after {
-    content: url('../assets/images/icon-error.svg');
-    position: absolute;
-    right: 1.25rem;
-}
+
 
 .card.correct {
-
-
     & .icon {
         background-color: var(--clr-success);
         color: var(--clr-white);
     }
-
-
 }
 
 .card.active.correct {
     outline: 2px solid var(--clr-success);
 }
 
+
+.active.fail::after {
+    background: url('../assets/images/icon-error.svg');
+}
+
+
 .card.correct::after {
-    content: url('../assets/images/icon-correct.svg');
+    background: url('../assets/images/icon-correct.svg');
+}
+
+.active.fail::after,
+.card.correct::after {
+    --_size: 24px;
+    content: '';
+    background-size: var(--_size) var(--_size);
     position: absolute;
-    right: 1.25rem;
+    right: var(--_padding);
+    width: var(--_size);
+    height: var(--_size);
+}
+
+
+
+@media (min-width:37.5rem) {
+
+    .active.fail::after,
+    .card.correct::after {
+        --_size: 30px;
+    }
 
 }
+
 
 .card .icon {
     padding: 0.5rem;

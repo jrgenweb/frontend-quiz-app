@@ -1,33 +1,41 @@
 <script setup>
- import IconSunDark from './icons/IconSunDark.vue'
+import IconSunDark from './icons/IconSunDark.vue'
 import IconMoonDark from './icons/IconMoonDark.vue' 
 </script>
 <template>
     <div>
 
-   <IconSunDark /> 
-<label class="switch">
-  <input type="checkbox">
-  <span class="slider round"></span>
-</label>
+        <IconSunDark class="icon" />
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
 
-<IconMoonDark />
+        <IconMoonDark class="icon" />
 
     </div>
 </template>
 
 <style scoped>
 div {
-display: flex;
-align-items:center;
-gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+.icon {
+    width: 14px;
+    height: 14px;
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 32px;
+    /*60*/
+    height: 20px;
+    /*34*/
 }
 
 /* Hide default HTML checkbox */
@@ -53,8 +61,9 @@ gap: 0.5rem;
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 12px;
+    /**26 */
+    width: 12px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -63,7 +72,7 @@ gap: 0.5rem;
 }
 
 input:checked+.slider {
-    background-color:var(--clr-primary);
+    background-color: var(--clr-primary);
 }
 
 input:focus+.slider {
@@ -71,9 +80,9 @@ input:focus+.slider {
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
 }
 
 /* Rounded sliders */
@@ -83,5 +92,24 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+@media (min-width:37.5rem) {
+    .switch {
+        width: 48px;
+        height: 28px;
+    }
+
+    .slider:before {
+        height: 20px;
+        width: 20px;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+    }
 }
 </style>

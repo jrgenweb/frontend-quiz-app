@@ -6,66 +6,48 @@ body {
   place-content: center;
 }
 
-body::after {
-}
-
 .wrapper {
   max-width: 1440px;
   width: 100vw;
+  min-height: 100vh;
   margin: 0 auto;
 
+  padding: 1.25rem; /* 97 140 */
+
   background-repeat: no-repeat;
-  min-height: 80vh; /*only first time*/
-  padding: 97px 140px;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 800px) {
+@media (min-width: 37.5rem) {
   body {
     display: unset;
   }
   .wrapper {
-    max-width: 768px;
-    padding: 54px 64px;
+    max-width: 1440px;
+    padding: 54px 64px; /* d 54 64  */
     width: 100vw;
-    background: url("../assets/images/pattern-background-tablet-light.svg");
-    background-repeat: no-repeat;
-  }
-  .flex {
-    flex-direction: column;
-  }
-  .flex > * {
-    width: 100% !important;
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 800px) {
   .wrapper {
-    padding: 1.5rem;
-    width: 100vw;
-    background: url("../assets/images/pattern-background-mobile-light.svg");
-    background-repeat: no-repeat;
+    max-width: 1440px;
+    padding: 97px 140px; /* d 54 64  */
   }
   .flex {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    gap: 130px;
   }
   .flex > * {
-    width: 100% !important;
+    width: 50%;
   }
 }
 
-h1 {
-  line-height: 1;
-  font-size: var(--fs-heading-l);
-  & span {
-    display: block;
-    font-weight: bold;
+@media (min-width: 800px) {
+  .wrapper {
   }
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-}
-.flex > * {
-  width: 50%;
 }

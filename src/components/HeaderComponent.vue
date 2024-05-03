@@ -16,35 +16,17 @@ const props = defineProps({
 
 onMounted(() => {
 
-    /* console.log(route.params.type, 'params')
-    iconPath.value = route.params.type */
-
 
     quizzData.value = fn.getQuizzDataByTitle(route.params.type);
     iconPath.value = '/src/' + quizzData.value.icon;
-    //console.log(fn.getQuizzDataByTitle(route.params.type), 'header data');
-    /* switch (route.params.type) {
-        case 'HTML':
-            iconPath.value = "/src/assets/images/icon-html.svg"
-            break
-        case 'JavaScript':
-            iconPath.value = "/src/assets/images/icon-js.svg"
-            break;
-        case 'CSS':
-            iconPath.value = "/src/assets/images/icon-css.svg"
-            break;
-        case 'Accessibility':
-            iconPath.value = "/src/assets/images/icon-accessibility.svg"
-            break;
-        default: break;
-    } */
+
 
 
 });
 
 </script>
 <template>
-    <div>
+    <div class="header">
         <h2><img :src="iconPath" :data-name="quizzData.title"> {{ $route.params.type }} </h2>
         <SwitchButton></SwitchButton>
     </div>
@@ -52,6 +34,10 @@ onMounted(() => {
 
 
 <style scoped>
+.header {
+    padding: 0 0.3rem;
+}
+
 h2 {
     display: flex;
     align-items: center;

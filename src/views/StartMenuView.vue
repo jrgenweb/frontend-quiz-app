@@ -3,12 +3,15 @@
 
 import { onMounted, ref } from 'vue';
 import * as fn from '../functions/functions';
-
+import router from '@/router';
 const quizzCategories = ref(0)
 onMounted(() => {
     quizzCategories.value = fn.loadQuizzCategories()
     console.log(fn.loadQuizzCategories());
 })
+
+
+
 
 </script>
 
@@ -28,13 +31,13 @@ onMounted(() => {
                 <div class="cards">
 
 
-                    <RouterLink :to="'/questions/' + item.title" v-bind:key="index"
+
+                    <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
                         v-for="item, index in quizzCategories">
-                        <div class="card">
-                            <img :src="'/src/' + item.icon" alt="HTML logo">
-                            <span>{{ item.title }}</span>
-                        </div>
-                    </RouterLink>
+                        <img :src="'/src/' + item.icon" alt="HTML logo">
+                        <span>{{ item.title }}</span>
+                    </div>
+
 
 
                 </div>
@@ -47,8 +50,35 @@ onMounted(() => {
 <style scoped>
 p {
     font-style: italic;
-    margin-top: 52px;
-    margin-bottom: 72px;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+    margin-bottom: 2.5rem;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    line-height: 1;
+    font-size: var(--fs-heading-l);
+
+    margin-top: 0.5rem;
+    letter-spacing: -0.3px;
+    line-height: 120%;
+
+    & span {
+        display: block;
+        font-weight: bold;
+    }
+}
+
+@media (min-width:37.5rem) {
+    p {
+        margin-top: 52px;
+        margin-bottom: 72px;
+    }
 }
 
 a {
@@ -58,20 +88,24 @@ a {
 
 .cards {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
 }
 
-a .card {
+.card {
     width: inherit;
     background-color: var(--color-card-bg);
-    border-radius: 1.5rem;
+    border-radius: 12px;
 
 
-    padding: 1.25rem;
+    padding: 12px;
     font-size: var(--fs-heading-s);
 
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 
     & span {
         font-weight: var(--fw-700);
@@ -79,24 +113,39 @@ a .card {
 
 }
 
+
+
+
 .card img {
     padding: 0.5rem;
     border-radius: 0.5rem;
+    width: 40px;
 }
 
-a:nth-child(1) .card img {
+@media (min-width:37.5rem) {
+    .card img {
+        width: 56px;
+    }
+
+    a .card {
+        padding: 1.25rem;
+        border-radius: 24px;
+    }
+}
+
+.card:nth-child(1) img {
     background-color: #FFF1E9;
 }
 
-a:nth-child(2) .card img {
+.card:nth-child(2) img {
     background-color: #E0FDEF;
 }
 
-a:nth-child(3) .card img {
+.card:nth-child(3) img {
     background-color: #EBF0FF;
 }
 
-a:nth-child(4) .card img {
+.card:nth-child(4) img {
     background-color: #F6E7FF;
 }
 

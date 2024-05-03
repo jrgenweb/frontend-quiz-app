@@ -23,8 +23,14 @@ import Header from './components/HeaderComponent.vue'
 
 <style scoped>
 .header {
-  margin-bottom: 100px;
+  margin-bottom: 48px;
   display: flex;
   justify-content: space-between;
+}
+
+@media (min-width:37.5rem) {
+  .header {
+    margin-bottom: 100px;
+  }
 }
 </style>

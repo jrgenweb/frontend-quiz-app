@@ -3,7 +3,10 @@ import { onMounted, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import CardItem from '../components/CardItem.vue'
 import Button from '../components/ButtonComponent.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
+import IconError from '@/components/icons/IconError.vue'
 import * as fn from '../functions/functions'
+import router from '@/router'
 
 
 
@@ -12,21 +15,21 @@ const route = useRoute()
 
 
 
-const allQuestions = ref(0);
-const currentQuestion = ref(0);
-const current = ref(0);
-const question = ref(0);
+const allQuestions = ref(0);//contains all question by category
+const currentQuestion = ref(0);//current question, options and the correct answer
+const current = ref(0); //current index of question
+const question = ref(0);//question title
 
 
 
 
-const answers = ref(0);
-const answered = ref(false);
-const score = ref(0);
-const selectedAnswer = ref(0);
+const answers = ref(0);//answer options
+const answered = ref(false);//if answered true else false
+const score = ref(0);//points
+const selectedAnswer = ref(0);//the selected answer
 
 
-
+const submited = ref(false)//if submited the answer
 
 
 
@@ -51,14 +54,18 @@ function loadQuestion() {
 
 function submitAnswer() {
 
+
+
+
+
+
+    submited.value = true
+    console.log(selectedAnswer.value, answered.value)
+    if (!selectedAnswer.value) {
+        //hiba üzenet megjelenítése
+        return false
+    }
     answered.value = !answered.value;
-
-
-
-    console.log(fn.getQuestion(0, 'CSS'))
-    /** check if correct */
-
-    console.log(selectedAnswer.value, 'selected')
 
     if (checkAnswer(selectedAnswer.value)) {
         console.log('helyes')
@@ -70,10 +77,12 @@ function submitAnswer() {
     }
 
 
+
 }
 
 function loadNextQuestion() {
-
+    submited.value = false;
+    selectedAnswer.value = '';
     if (answered.value) {
         current.value++;
 
@@ -87,16 +96,17 @@ function loadNextQuestion() {
 function checkAnswer(answer) {
 
     if (currentQuestion.value.answer === answer) {
-        //show green icon
-
         score.value++;
-        console.log(score.value)
         return true
     }
 
 
     //show red icon
     return false
+}
+
+function loadResults() {
+    router.push('/results/');
 }
 
 
@@ -108,11 +118,12 @@ function checkAnswer(answer) {
 
 
     <div class="flex">
-        <div>
-            <p>Question {{ (current + 1) }} of {{ allQuestions.length }}</p>
-            <h2>{{ question }}</h2>
-
-
+        <div class="leftside">
+            <div>
+                <p>Question {{ (current + 1) }} of {{ allQuestions.length }}</p>
+                <h2>{{ question }}</h2>
+            </div>
+            <ProgressBar :max="allQuestions.length" :value="current + 1" class="progressbar"></ProgressBar>
 
         </div>
         <div>
@@ -120,25 +131,78 @@ function checkAnswer(answer) {
 
             <CardItem v-bind:key="index" v-for="item, index in answers " icon="HTML" :text="item" :index="index"
                 class="carditem" @click="!answered ? selectedAnswer = item : null" :state="{
-                active: item == selectedAnswer,
-                correct: currentQuestion.answer === item && answered ? 'correct' : '',
-                fail: answered && item != currentQuestion.answer && item == selectedAnswer ? 'fail' : ''
-            }">
+                    active: item == selectedAnswer,
+                    correct: currentQuestion.answer === item && answered ? 'correct' : '',
+                    fail: answered && item != currentQuestion.answer && item == selectedAnswer ? 'fail' : ''
+                }">
             </CardItem>
 
 
             <Button title="Submit Answer" class="btn" @click="submitAnswer" v-if="!answered" />
+            <Button title="See Results" class="btn" @click="loadResults"
+                v-else-if="current + 1 == allQuestions.length && answered" />
             <Button title="Next Question" class="btn" @click="loadNextQuestion" v-else />
+
+            <span v-if="!selectedAnswer && !answered && submited" class="error-message">
+                <IconError></IconError>
+                Please select an answer
+            </span>
 
         </div>
     </div>
 </template>
 
 <style scoped>
+.leftside {
+    margin-bottom: 40px;
+
+    &>*:not(:first-child) {
+        margin-top: 1rem;
+    }
+}
+
 .cards:not(:first-child),
 .btn {
-    margin-top: 1.5rem;
+    margin-top: 12px;
 
+}
+
+.cards {
+    display: flex;
+}
+
+h2 {
+    font-size: var(--fs-heading-m);
+    font-weight: bold;
+}
+
+p {
+    font-style: italic;
+    color: var(--clr-neutral-400);
+}
+
+@media (min-width: 800px) {
+
+    .leftside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 3rem;
+
+
+
+
+
+
+    }
+
+
+    .cards:not(:first-child),
+    .btn {
+        margin-top: 1.5rem;
+
+    }
 }
 
 .carditem.active {
@@ -161,5 +225,15 @@ function checkAnswer(answer) {
 
         outline: 4px solid red;
     }
+}
+
+.error-message {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    margin-top: 1rem;
+    color: var(--clr-danger);
+    justify-content: center;
+    font-size: var(--fs-body-m);
 }
 </style>

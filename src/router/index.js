@@ -10,17 +10,20 @@ const router = createRouter({
       component: StarMenuView
     },
     {
-      path: '/questions',
-      name: 'questions',
-      component: () => import('../views/QuestionsView.vue')
-    },
-    {
       path: '/questions/:type',
       name: 'questions',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/QuestionsView.vue')
+    },
+    {
+      path: '/results',
+      name: 'results',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ResultView.vue')
     }
   ]
 })

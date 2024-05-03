@@ -18,24 +18,39 @@
   --fw-700: 600;
   --fw-400: normal;
 
-  --fs-display: 144px;
+  --fs-display: 88px;
 
-  --fs-heading-l: 64px;
-
-  --fs-heading-m: 36px;
-  --fs-heading-s: 28px;
-  --fs-body-m: 24px;
+  --fs-heading-l: 40px;
+  --fs-heading-m: 20px;
+  --fs-heading-s: 18px;
+  --fs-body-m: 18px;
   --fs-body-s: 20px;
-
   --lh-body-s: 150%;
+}
+
+@media (min-width: 37.5rem) {
+  :root {
+    --fs-display: 144px;
+    --fs-heading-l: 64px;
+    --fs-heading-m: 36px;
+    --fs-heading-s: 28px;
+    --fs-body-m: 24px;
+    --fs-body-s: 20px;
+    --lh-body-s: 150%;
+  }
+
+  body {
+    font-size: 15px;
+  }
 }
 
 /* semantic color variables for this project */
 :root {
   --color-bg-primary: var(--clr-neutral-100);
   --color-text: var(--clr-neutral-800);
-
+  --color-text-card: var(--clr-neutral-800);
   --color-card-bg: var(--clr-white);
+  --color-progressbar-bg: var(--clr-white);
 
   --color-button-text: var(--clr-white);
 
@@ -46,20 +61,60 @@
   :root {
     --color-bg-primary: var(--clr-neutral-800);
     --color-text: var(--clr-white);
-
+    --color-text-card: var(var(--clr-neutral-800));
     --color-card-bg: var(--clr-neutral-600);
-  }
 
+    --color-progressbar-bg: var(--clr-neutral-600);
+  }
+  /* dark and mobile */
   .wrapper {
-    background: url("images/pattern-background-desktop-dark.svg");
+    background: url("images/pattern-background-mobile-dark.svg");
+    background-repeat: no-repeat;
   }
 }
 
+/*light and mobile*/
 @media (prefers-color-scheme: light) {
   .wrapper {
-    background: url("images/pattern-background-desktop-light.svg");
+    background: url("images/pattern-background-mobile-light.svg");
+    background-repeat: no-repeat;
   }
 }
+/* light and tablet*/
+@media (prefers-color-scheme: light) and (min-width: 37.5rem) {
+  .wrapper {
+    background: url("images/pattern-background-tablet-light.svg");
+    background-repeat: no-repeat;
+  }
+}
+/*dark and tablet size*/
+@media (prefers-color-scheme: dark) and (min-width: 37.5rem) {
+  .wrapper {
+    background: url("images/pattern-background-tablet-dark.svg");
+    background-repeat: no-repeat;
+  }
+}
+/*dark and desktop size*/
+@media (prefers-color-scheme: dark) and (min-width: 800px) {
+  .wrapper {
+    background: url("../assets/images/pattern-background-desktop-dark.svg");
+    background-repeat: no-repeat;
+  }
+}
+/*light and desktop*/
+@media (prefers-color-scheme: light) and (min-width: 800px) {
+  .wrapper {
+    background: url("images/pattern-background-desktop-light.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+/*
+@media (max-width: 600px) and (prefers-color-scheme: dark) {
+  .wrapper {
+    background: url("../assets/images/pattern-background-mobile-light.svg");
+  }
+} */
 
 @font-face {
   font-family: "Rubik";
@@ -78,6 +133,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   font-weight: normal;
 }
 
@@ -102,7 +158,7 @@ body {
     "Droid Sans",
     "Helvetica Neue",
     sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

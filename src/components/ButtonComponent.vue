@@ -13,9 +13,9 @@ const props = defineProps({
 <style scoped>
 button {
     background-color: var(--clr-primary);
-    padding: 2rem;
+    padding: 1rem;
     width: 100%;
-    border-radius: 1.5rem;
+    border-radius: 12px;
     border: 0;
     outline: 0;
     font-size: var(--fs-heading-s);
@@ -25,6 +25,13 @@ button {
     cursor: pointer;
 
     transition: background-color 0.3s;
+}
+
+@media (min-width:37.5rem) {
+    button {
+        border-radius: 24px;
+        padding: 2rem;
+    }
 }
 
 button:hover {
