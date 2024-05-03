@@ -10,7 +10,14 @@ onMounted(() => {
     console.log(fn.loadQuizzCategories());
 })
 
+const getImageUrl = (path) => {
 
+    const url = path.split('/')
+    console.log(url);
+
+
+    return new URL(`../assets/${url[1]}/${url[2]}`, import.meta.url).href;
+};
 
 
 </script>
@@ -34,7 +41,7 @@ onMounted(() => {
 
                     <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
                         v-for="item, index in quizzCategories">
-                        <img :src="item.icon.substring(2)" alt="HTML logo">
+                        <img :src="getImageUrl(item.icon.substring(2))" alt="HTML logo">
                         <span>{{ item.title }}</span>
                     </div>
 
