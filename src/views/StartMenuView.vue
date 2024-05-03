@@ -34,7 +34,7 @@ onMounted(() => {
 
                     <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
                         v-for="item, index in quizzCategories">
-                        <img :src="'/src/' + item.icon" alt="HTML logo">
+                        <img :src="item.icon.substring(2)" alt="HTML logo">
                         <span>{{ item.title }}</span>
                     </div>
 
