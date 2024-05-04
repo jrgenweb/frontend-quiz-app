@@ -51,19 +51,6 @@ a {
     padding: 0;
 }
 
-h1 {
-    line-height: 1;
-    font-size: var(--fs-heading-l);
-
-    margin-top: 0.5rem;
-    letter-spacing: -0.3px;
-    line-height: 120%;
-
-    & span {
-        display: block;
-        font-weight: bold;
-    }
-}
 
 @media (min-width:37.5rem) {
     p {

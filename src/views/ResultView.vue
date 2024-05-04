@@ -3,26 +3,33 @@ import Button from '@/components/ButtonComponent.vue';
 
 import router from '@/router'
 
+import { useQuizStore } from '@/stores/quizStore';
+
+
+
+
+
 </script>
 <template>
     <div>
         <div class="flex">
             <div>
                 <h1>Quiz completed<span>You scored...</span></h1>
-                <p>Pick a subject to get started</p>
+
             </div>
 
             <div class="">
                 <div class="scored">
                     <div class="card">
-                        <img src="../assets/images/icon-accessibility.svg" alt="Acces logo">
-                        <span>Accessebility</span>
+                        <img :src="useQuizStore.icon" :alt="useQuizStore.title + ' logo'"
+                            :data-title="useQuizStore.title">
+                        <span>{{ useQuizStore.title }}</span>
                     </div>
 
 
                     <p>
-                        <span class="score">8</span>
-                        out of <span class="total">10</span>
+                        <span class="score">{{ useQuizStore.score }}</span>
+                        out of <span class="total">{{ useQuizStore.maxScore }}</span>
                     </p>
                 </div>
 
@@ -40,6 +47,17 @@ import router from '@/router'
 .scored {
     border-radius: 0.5rem;
     background-color: var(--color-card-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+
+    & p {
+        text-align: center;
+    }
 }
 
 p .score {
@@ -48,10 +66,19 @@ p .score {
     line-height: 1;
 }
 
+
+
+
 p span:first-of-type {
 
     display: block;
     margin: 0;
     padding: 0;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 </style>

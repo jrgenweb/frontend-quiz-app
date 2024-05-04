@@ -7,6 +7,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import IconError from '@/components/icons/IconError.vue'
 import router from '@/router'
 import * as fn from '../functions/functions'
+import { useQuizStore } from '@/stores/quizStore'
 
 
 
@@ -35,6 +36,11 @@ const submited = ref(false)//if submited the answer
 
 onMounted(() => {
     loadQuestion()
+    useQuizStore.score = 0; // set to null
+    useQuizStore.title = route.params.type
+    useQuizStore.icon = fn.getImageUrl(fn.getIcon(route.params.type).icon.substring(2))
+    useQuizStore.maxScore = allQuestions.value.length
+
 });
 
 
@@ -51,11 +57,6 @@ function loadQuestion() {
 
 function submitAnswer() {
 
-
-
-
-
-
     submited.value = true
     console.log(selectedAnswer.value, answered.value)
     if (!selectedAnswer.value) {
@@ -64,14 +65,15 @@ function submitAnswer() {
     }
     answered.value = !answered.value;
 
-    if (checkAnswer(selectedAnswer.value)) {
-        console.log('helyes')
-        //add green icon to 
-    } else {
-        //add red icon to
 
 
+    if (currentQuestion.value.answer === selectedAnswer.value) {
+        useQuizStore.score++;
     }
+
+
+
+
 
 
 
@@ -90,22 +92,9 @@ function loadNextQuestion() {
     answered.value = false;
 }
 
-function checkAnswer(answer) {
-
-    if (currentQuestion.value.answer === answer) {
-        score.value++;
-        return true
-    }
-
-
-    //show red icon
-    return false
-}
-
 function loadResults() {
     router.push('/results/');
 }
-
 
 
 
@@ -115,6 +104,7 @@ function loadResults() {
 
 
     <div class="flex">
+
         <div class="leftside">
             <div>
                 <p>Question {{ (current + 1) }} of {{ allQuestions.length }}</p>
