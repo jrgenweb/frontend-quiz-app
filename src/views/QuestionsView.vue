@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CardItem from '../components/CardItem.vue'
 import Button from '../components/ButtonComponent.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import IconError from '@/components/icons/IconError.vue'
-import * as fn from '../functions/functions'
 import router from '@/router'
+import * as fn from '../functions/functions'
 
 
 
@@ -34,10 +34,7 @@ const submited = ref(false)//if submited the answer
 
 
 onMounted(() => {
-
-
     loadQuestion()
-
 });
 
 
@@ -187,10 +184,6 @@ p {
         justify-content: space-between;
         gap: 1rem;
         padding-bottom: 3rem;
-
-
-
-
 
 
     }

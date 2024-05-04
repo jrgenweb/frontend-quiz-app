@@ -26,7 +26,6 @@ img[data-title] {
   padding: 0.5rem;
   border-radius: 0.5rem;
   width: 40px;
-  background-color: red;
 }
 
 @media (min-width: 37.5rem) {

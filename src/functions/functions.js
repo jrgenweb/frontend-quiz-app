@@ -13,18 +13,10 @@ export function loadQuizzCategories() {
   return quizz
 }
 
-export function loadQuizzQuestionsByCategory(category) {
-  return data.quizzes.filter((item) => {
-    return item.title === category
-  })
-}
-
 export function getIcon(title) {
-  console.log(data.quizzes)
   const helper = data.quizzes.filter((item) => {
     return item.title === title
   })
-  console.log(helper[0], 'helpeeeeeeeeeeeer')
   return helper[0]
 }
 
@@ -48,9 +40,8 @@ export function getQuestion(questions, index) {
   return questions[index]
 }
 
+/** */
 export function getImageUrl(path) {
   const url = path.split('/')
-  console.log(url)
-
   return new URL(`../assets/${url[1]}/${url[2]}`, import.meta.url).href
 }

@@ -1,7 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
-
-
 const props = defineProps({
     text: String,
     index: Number,
@@ -16,20 +13,12 @@ const props = defineProps({
  */
 const letters = "ABCDEFG"
 
-
-onMounted(() => {
-
-})
-function click() {
-    /* console.log(props.state.active, 'active') */
-    console.log(props.state, 'bindClass');
-}
 </script>
 
 <template>
     <div class="cards">
 
-        <div class="card" :class="[state.correct, state.fail, { active: state.active }]" @click="click">
+        <div class="card" :class="[state.correct, state.fail, { active: state.active }]">
             <span class="icon">{{ letters[index] }}</span>
             <span>{{ text }}</span>
         </div>

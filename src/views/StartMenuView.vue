@@ -1,17 +1,14 @@
 <script setup>
-//import TheWelcome from '../components/TheWelcome.vue'
-
 import { onMounted, ref } from 'vue';
-import * as fn from '../functions/functions';
 import router from '@/router';
+import * as fn from '../functions/functions';
+
+
 const quizzCategories = ref(0)
 
 
 onMounted(() => {
     quizzCategories.value = fn.loadQuizzCategories()
-    console.log(fn.loadQuizzCategories());
-    const imageUrl = new URL('/src/assets/images/icon-correct.svg', import.meta.url).href
-    console.log(imageUrl)
 })
 
 
@@ -21,31 +18,21 @@ onMounted(() => {
 
 <template>
     <main>
-
-        <div class="header">
-
-        </div>
-
         <div class="flex">
             <div>
                 <h1>Welcome to the <span>Frontend Quiz!</span></h1>
                 <p>Pick a subject to get started</p>
             </div>
-            <div class="">
-                <div class="cards">
 
-
-
-                    <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
-                        v-for="item, index in quizzCategories">
-                        <img :src="fn.getImageUrl(item.icon.substring(2))" alt="HTML logo">
-                        <span>{{ item.title }}</span>
-                    </div>
-
-
-
+            <div class="cards">
+                <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
+                    v-for="item, index in quizzCategories">
+                    <img :src="fn.getImageUrl(item.icon.substring(2))" :alt="item.title + ' logo'"
+                        :data-title="item.title">
+                    <span>{{ item.title }}</span>
                 </div>
             </div>
+
         </div>
     </main>
 </template>
@@ -115,6 +102,10 @@ a {
         font-weight: var(--fw-700);
     }
 
+    &:hover {
+        cursor: pointer;
+    }
+
 }
 
 
@@ -137,7 +128,7 @@ a {
     }
 }
 
-.card:nth-child(1) img {
+/* .card:nth-child(1) img {
     background-color: #FFF1E9;
 }
 
@@ -151,14 +142,10 @@ a {
 
 .card:nth-child(4) img {
     background-color: #F6E7FF;
-}
+} */
 
 .cards a:not(:first-child) .card {
     margin-top: 1.5rem;
 
-}
-
-.card:hover {
-    cursor: pointer;
 }
 </style>
