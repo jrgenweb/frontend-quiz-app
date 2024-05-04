@@ -34,4 +34,4 @@ npm run build
 npm run lint
 ```
 
-[https://jrgenweb.github.io/frontend-quiz-app](https://jrgenweb.github.io/frontend-quiz-app)
+[https://frontend-quiz-app-ruddy.vercel.app/](https://frontend-quiz-app-ruddy.vercel.app/)
