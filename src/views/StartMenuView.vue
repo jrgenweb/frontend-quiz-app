@@ -5,9 +5,13 @@ import { onMounted, ref } from 'vue';
 import * as fn from '../functions/functions';
 import router from '@/router';
 const quizzCategories = ref(0)
+
+
 onMounted(() => {
     quizzCategories.value = fn.loadQuizzCategories()
     console.log(fn.loadQuizzCategories());
+    const imageUrl = new URL('/src/assets/images/icon-correct.svg', import.meta.url).href
+    console.log(imageUrl)
 })
 
 
@@ -34,7 +38,7 @@ onMounted(() => {
 
                     <div class="card" v-bind:key="index" @click="router.push('/questions/' + item.title)"
                         v-for="item, index in quizzCategories">
-                        <img :src="item.icon.substring(2)" alt="HTML logo">
+                        <img :src="item.icon" alt="HTML logo">
                         <span>{{ item.title }}</span>
                     </div>
 
