@@ -19,19 +19,13 @@ export function loadQuizzQuestionsByCategory(category) {
   })
 }
 
-export function getQuizzDataByTitle(title) {
-  let quizzData = {}
+export function getIcon(title) {
   console.log(data.quizzes)
   const helper = data.quizzes.filter((item) => {
     return item.title === title
   })
-  console.log(helper, 'helper')
-  quizzData.title = title
-  quizzData.icon = helper[0]?.icon
-
-  console.log('quizz data', quizzData)
-
-  return quizzData
+  console.log(helper[0], 'helpeeeeeeeeeeeer')
+  return helper[0]
 }
 
 /* 
@@ -53,17 +47,10 @@ export function getAllQuestion(category) {
 export function getQuestion(questions, index) {
   return questions[index]
 }
-/* export function getQuestion(index, category) {
-  const selected = data.quizzes.filter((item) => {
-    return item.title === category
-  })
 
-  const questions = [...selected[0].questions]
-  if (index < 0 || index > questions.length) {
-    console.log('Nem megfelelő index')
-    return 0
-  }
+export function getImageUrl(path) {
+  const url = path.split('/')
+  console.log(url)
 
-  return questions[index]
+  return new URL(`../assets/${url[1]}/${url[2]}`, import.meta.url).href
 }
- */

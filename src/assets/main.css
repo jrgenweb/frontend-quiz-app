@@ -21,6 +21,36 @@ body {
   flex-direction: column;
 }
 
+/** global icons */
+img[data-title] {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 40px;
+  background-color: red;
+}
+
+@media (min-width: 37.5rem) {
+  img[data-title] {
+    width: 56px;
+  }
+}
+
+img[data-title="HTML"] {
+  background-color: #fff1e9;
+}
+
+img[data-title="CSS"] {
+  background-color: #e0fdef;
+}
+
+img[data-title="JavaScript"] {
+  background-color: #ebf0ff;
+}
+
+img[data-title="Accessibility"] {
+  background-color: #f6e7ff;
+}
+
 @media (min-width: 37.5rem) {
   body {
     display: unset;

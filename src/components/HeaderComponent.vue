@@ -16,18 +16,34 @@ const props = defineProps({
 
 onMounted(() => {
 
-
-    quizzData.value = fn.getQuizzDataByTitle(route.params.type);
-    iconPath.value = '/src/' + quizzData.value.icon;
+    //console.log(route.params.type)
 
 
 
 });
 
+
+function loadImage(path) {
+
+
+    if (path) {
+        let helper = fn.getIcon(path);
+
+
+        console.log(helper.icon + 'path')
+        //quizzData.value = helper;
+        iconPath.value = fn.getImageUrl(helper.icon.substring(2));
+        console.log(quizzData.value, 'quizzdataaaaa');
+    }
+
+
+    return path;
+}
 </script>
 <template>
     <div class="header">
-        <h2><img :src="iconPath" :data-name="quizzData.title"> {{ $route.params.type }} </h2>
+        <h2><img v-if="$route.params.type" :src="iconPath" :data-title="$route.params.type"> {{
+            loadImage($route.params.type) }} </h2>
         <SwitchButton></SwitchButton>
     </div>
 </template>

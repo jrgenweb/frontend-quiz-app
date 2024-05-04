@@ -167,9 +167,7 @@ function loadResults() {
 
 }
 
-.cards {
-    display: flex;
-}
+
 
 h2 {
     font-size: var(--fs-heading-m);
